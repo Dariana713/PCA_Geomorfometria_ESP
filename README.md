@@ -50,6 +50,21 @@ rpc <- rasterPCA(top1, spca=TRUE)
 > 
 
 
+## Model parameters
+summary(rpc$model)
 
-summary(rpc$model) 
+
+
+
 loadings(rpc$model)
+
+
+
+#RGB
+ggRGB(rpc$map,1,2,3, stretch="lin", q=0)
+
+#gridExtra
+if(require(gridExtra)){
+  plots <- lapply(1:3, function(x) ggR(rpc$map, x, geom_raster = TRUE))
+  grid.arrange(plots[[1]],plots[[2]], plots[[3]], ncol=2)
+}
